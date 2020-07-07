@@ -68,6 +68,8 @@ async def get_backers():
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
+    game = discord.Game("!focus backer name")
+    await client.change_presence(activity=game)
     get_backers.start()
 
 
@@ -80,13 +82,25 @@ async def on_message(message):
         try:
             username = re.search(username_regex, message.content).group(1)
         except AttributeError:
-            await message.channel.send('invalid format')
+            embed = discord.Embed(
+                description="Please use `!focus backer name` to invoke the bot. Name must be exact."
+            )
+            embed.title = "Invalid Format"
+            await message.channel.send(embed=embed)
             return
 
-        with open("backers.json") as f:
-            backers = json.load(f)
-            update_time = os.path.getmtime("backers.json")
-            ts = datetime.utcfromtimestamp(os.path.getmtime("backers.json"))
+        try:
+            with open("backers.json") as f:
+                backers = json.load(f)
+                update_time = os.path.getmtime("backers.json")
+                ts = datetime.utcfromtimestamp(os.path.getmtime("backers.json"))
+        except FileNotFoundError:
+            embed = discord.Embed(
+                description="Backer list has not been dumped yet, this bot will dump backer info every hour."
+            )
+            embed.title = "Please focus on it."
+            await message.channel.send(embed=embed)
+            return
 
         try:
             backer_info = next(backer for backer in backers if backer["pledger_display_name"] == username)
