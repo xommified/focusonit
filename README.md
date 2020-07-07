@@ -9,4 +9,4 @@ Invite link (only needs send/read/embed perms): https://discord.com/api/oauth2/a
 
 #### Usage:
 
-![Usage](https://i.imgur.com/gJodlOQ.png)
+![Usage](https://i.imgur.com/Q7DnIs0.png)
