@@ -4,7 +4,7 @@ Just a toy project which pulls backer info from the GPD Win Max campaign and ret
 
 Alleviates the "need" for users to run their own Python script to retrieve place in line in The Phawx's GPD devices Discord.
 
-Invite link (only needs send/read/embed perms): https://discord.com/api/oauth2/authorize?client_id=729833067207983148&permissions=83968&scope=bot
+Invite link (only needs send/embed perms): https://discord.com/api/oauth2/authorize?client_id=729833067207983148&permissions=18432&scope=bot
 
 
 #### Usage:
